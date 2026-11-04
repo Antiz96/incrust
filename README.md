@@ -11,10 +11,10 @@
 
 ## Description
 
-A minimal incremental / idle terminal game
+A minimal incremental / idle terminal game about compiling stuff.
 
 Run `incrust` to start the game.  
-Then type 'help' to see the list of available commands.
+Then type 'help' to see the list of available commands and 'guide' to see the game guide.
 
 ## Installation
 
