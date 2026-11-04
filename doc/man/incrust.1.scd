@@ -2,13 +2,13 @@ incrust(1) ["Incrust 0.0.1" ["Incrust Manual"]]
 
 # Name
 
-Incrust - A minimal incremental / idle terminal game
+Incrust - A minimal incremental / idle terminal game about compiling stuff
 
 # DESCRIPTION
 
 Run `incrust` to start the game.
 
-Then type 'help' to see the list of available commands.
+Then type 'help' to see the list of available commands and 'guide' to see the game guide.
 
 # SYNOPSIS
 
@@ -30,7 +30,7 @@ Then type 'help' to see the list of available commands.
 
 *2* Failed to create or read the statefile.
 
-*3* Failed to read user's command.
+*3* Failed to read the player's command.
 
 # BUGS
 
