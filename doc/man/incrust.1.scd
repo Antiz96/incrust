@@ -30,7 +30,11 @@ Then type 'help' to see the list of available commands and 'guide' to see the ga
 
 *2* Failed to create or read the statefile.
 
-*3* Failed to read the player's command.
+*3* Failed to initialize the command prompt editor.
+
+*4* Failed to register the interruption shortcut (Ctrl+C) handler for compilation.
+
+*5* Failed to retrieve the player's command.
 
 # BUGS
 

@@ -1,8 +1,10 @@
 //! Splash screen
 
 use colored::Colorize;
-use std::{thread, time::Duration};
+use std::thread;
+use std::time::Duration;
 
+use crate::command;
 use crate::statefile::GameState;
 
 pub fn splash_screen(game_state: &GameState) {
@@ -50,19 +52,7 @@ pub fn splash_screen(game_state: &GameState) {
     println!();
     println!("-----------------------------------");
     println!();
-    println!("SYSTEM RESOURCES");
-    println!();
-    println!("CPU        {} CORE(S)", game_state.cpu);
-    println!("RAM        {} GB", game_state.ram);
-    println!("DISK       {} GB", game_state.disk);
-    println!("CREDITS    {}", game_state.credits);
-    println!();
-    println!("SYSTEM PERKS");
-    println!();
-    println!(
-        "CI/CD      {}",
-        if game_state.ci_cd { "TRUE" } else { "FALSE" }
-    );
+    command::status(game_state);
     println!();
     println!("-----------------------------------");
     println!();

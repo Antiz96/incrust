@@ -1,5 +1,6 @@
 //! Create (if needed) and read statefile
-//! Acts as a save file, containing the system resources, system perks and credits
+//! It contains the resources and perks
+//! Also acts as a save file
 
 use anyhow::Context;
 use serde::{Deserialize, Serialize};
@@ -17,6 +18,7 @@ pub struct GameState {
     pub credits: f64,
     // Perks
     pub ci_cd: bool,
+    pub auto_scaling: bool,
 }
 
 // Default values
@@ -30,6 +32,7 @@ impl Default for GameState {
             credits: 0.0,
             // Perks
             ci_cd: false,
+            auto_scaling: false,
         }
     }
 }
