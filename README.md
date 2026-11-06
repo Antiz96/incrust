@@ -64,7 +64,31 @@ There are also shell completions available in the [`res/completions/`](https://g
 ## Usage
 
 Run `incrust` to start the game.  
-Then type 'help' to see the list of available commands.
+Then type 'help' to see the list of available commands and 'guide' to see the game guide (shown below).
+
+```text
+Start compiling stuff by running the 'compile' command.
+You'll earn credits for each completed (and successful) compilation.
+Compilations have a small chance to fail upon completion, in which case
+you won't get rewarded with credits for it.
+Ongoing compilation can be interrupted by pressing Ctrl+C, but note that
+you won't get any credit for it either.
+
+Spend credits to upgrade your system resources and buy different perks by running
+the 'upgrade' command:
+
+- Buying CPU cores speeds up compile time
+  but also slightly increases chances of compilation failures
+- Buying RAM increases the credit reward per completed (and successful) compilation
+  but also slightly increases the compile time
+- Buying Disk space reduces chances of compilation failures
+  but also slightly reduces the credit reward per completed (and successful) compilation
+- Other bonuses can be acquired through different one-time purchase perks
+
+You can check the current status of your resources and perks by running the 'status' command.
+
+Progression is automatically saved and resumed between game sessions.
+```
 
 ## Documentation
 

@@ -2,11 +2,15 @@
 
 use clap::Parser;
 use std::process;
+use std::sync::mpsc;
 
 mod command;
+mod compile;
+mod economy;
 mod help;
 mod lockfile;
-mod menu;
+mod parameters;
+mod prompt;
 mod splash;
 mod statefile;
 mod version;
@@ -47,8 +51,8 @@ fn main() {
     });
 
     // Initialize / update statefile and load state value
-    // Exit on error
-    let game_state = statefile::init_statefile().unwrap_or_else(|error| {
+    // Exit if there was an issue when creating, reading, deserializing or writing the statefile
+    let mut game_state = statefile::init_statefile().unwrap_or_else(|error| {
         eprintln!("{error:?}");
         process::exit(2);
     });
@@ -56,11 +60,49 @@ fn main() {
     // Show splash screen
     splash::splash_screen(&game_state);
 
+    // Initialize rustyline editor
+    // Used to handle usual keyboard shortcuts within the game prompt
+    // like arrow keys to navigate through commands history and move the cursor,
+    // Ctrl+D to quit / disconnect, etc...
+    let mut rl_editor = prompt::create_editor().unwrap_or_else(|error| {
+        eprintln!("{error:?}");
+        process::exit(3);
+    });
+
+    // Create interruption channel and register the Ctrl+C handler
+    // Used to allow interrupting ongoing compilations by pressing Ctrl+C
+    let (interrupt_tx, interrupt_rx) = mpsc::channel();
+
+    ctrlc::set_handler(move || {
+        interrupt_tx.send(()).unwrap_or_else(|error| {
+            eprintln!("Failed to send interruption signal:\n{error}");
+            process::exit(4);
+        })
+    })
+    .unwrap_or_else(|error| {
+        eprintln!("Failed to register Ctrl+C handler:\n{error}");
+        process::exit(4);
+    });
+
     // Main game loop
     loop {
-        // Show game menu and execute command
-        match menu::show_menu().trim() {
-            "compile" => command::compile(),
+        // Show game prompt and retrieve command
+        // Exit if there was an issue when reading stdin
+        let command = prompt::show_prompt(&mut rl_editor).unwrap_or_else(|error| {
+            eprintln!("{error:?}");
+            process::exit(5);
+        });
+
+        // Allow empty command (handled below, just re-print the prompt)
+        let Some(command) = command else {
+            continue;
+        };
+
+        // Execute command
+        match command.trim() {
+            "compile" => command::compile(&mut game_state, &interrupt_rx).unwrap_or_else(|error| {
+                eprintln!("{error:?}");
+            }),
             "upgrade" => command::upgrade(),
             "status" => command::status(&game_state),
             "guide" => command::guide(),
