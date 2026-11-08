@@ -2,19 +2,19 @@
 
 // Base price and price multiplier for CPU
 const CPU_BASE_PRICE: f64 = 1.0;
-const CPU_PRICE_MULTIPLIER: f64 = 1.5;
+const CPU_PRICE_MULTIPLIER: f64 = 1.020;
 
 // Base price and price multiplier for RAM
 const RAM_BASE_PRICE: f64 = 1.0;
-const RAM_PRICE_MULTIPLIER: f64 = 1.75;
+const RAM_PRICE_MULTIPLIER: f64 = 1.030;
 
 // Base price and price multiplier for Disk
 const DISK_BASE_PRICE: f64 = 1.0;
-const DISK_PRICE_MULTIPLIER: f64 = 1.625;
+const DISK_PRICE_MULTIPLIER: f64 = 1.025;
 
 // Perks price
-pub const CI_CD_PRICE: f64 = 10.0;
-pub const AUTO_SCALING_PRICE: f64 = 50.0;
+pub const CI_CD_PRICE: f64 = 5.0;
+pub const AUTO_SCALING_PRICE: f64 = 25.0;
 
 // Helper to round values to the nearest 0.05
 fn round_value(value: f64) -> f64 {
