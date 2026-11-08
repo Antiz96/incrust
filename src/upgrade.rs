@@ -80,7 +80,7 @@ pub fn upgrade_shop(
             if game_state.ci_cd_unlocked {
                 "Already unlocked"
             } else {
-                "Automatically restarts a new compilation when the current one ends."
+                "Automatically start a new compilation once the current one is complete."
             }
         );
 
