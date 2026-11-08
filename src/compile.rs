@@ -4,22 +4,20 @@ use anyhow::Context;
 use colored::Colorize;
 use rand::random;
 use std::io::{self, Write};
+use std::process::{Child, Command, Stdio};
 use std::sync::mpsc::{Receiver, TryRecvError};
 use std::thread;
 use std::time::{Duration, Instant};
+use which::which;
 
 use crate::parameters;
 use crate::statefile::{self, GameState};
 use crate::upgrade;
 
-pub fn compile_proc(
+pub fn compile_process(
     game_state: &mut GameState,
     interrupt_rx: &Receiver<()>,
 ) -> anyhow::Result<bool> {
-    // Set timestamps to calculate compilation remaining time
-    let start = Instant::now();
-    let mut last_remaining = u64::MAX;
-
     // Silly messages
     println!(
         "{} Synchronizing imaginary dependencies...",
@@ -46,55 +44,68 @@ pub fn compile_proc(
         parameters::show_compilation_parameters(game_state);
     println!();
 
-    // Convert compile time to a Duration (used later to calculate remaining time)
+    // Convert compile time to a Duration (used later to determine when the compilation is over)
     let compile_time = Duration::from_secs_f64(compile_time);
+
+    // Start compilation timer
+    let start = Instant::now();
+
+    // Start genact (if it's installed, directly checked by the start_genact() function)
+    let mut genact_process = start_genact();
+
+    // Fallback compilation animation if genact is not installed
+    let spinner = ["-", "\\", "|", "/"];
+    let mut spinner_index = 0;
 
     // Main compilation loop
     loop {
         // Check for interruption request via Ctrl+C
         match interrupt_rx.try_recv() {
             Ok(()) => {
+                // Stop genact (if needed)
+                stop_genact(&mut genact_process);
+
                 println!();
                 println!(
-                    "\n{} Compilation interrupted, no credits earned...",
+                    "{} Compilation interrupted, no credits earned...",
                     "[INFO]".blue()
                 );
                 return Ok(true);
             }
             Err(TryRecvError::Empty) => {}
             Err(TryRecvError::Disconnected) => {
-                eprintln!("\nWarning: Interruption handler disconnected.");
+                // Stop genact (if needed)
+                stop_genact(&mut genact_process);
+                eprintln!("Warning: Interruption handler disconnected.");
                 return Ok(true);
             }
         }
 
-        // Calculate remaining time
-        let remaining = compile_time.saturating_sub(start.elapsed());
-
         // Check whether compilation is complete
-        if remaining.is_zero() {
+        if start.elapsed() >= compile_time {
             break;
         }
 
-        // Display countdown
-        let remaining_secs = remaining.as_secs_f64().ceil() as u64;
-
-        if remaining_secs != last_remaining {
-            let minutes = remaining_secs / 60;
-            let seconds = remaining_secs % 60;
-
-            print!("\rCompiling... {minutes:02}:{seconds:02} remaining ");
+        // Display fallback animation if genact isn't running / installed
+        if genact_process.is_none() {
+            print!("\rCompiling {}", spinner[spinner_index]);
             let _ = io::stdout().flush();
 
-            last_remaining = remaining_secs;
+            spinner_index = (spinner_index + 1) % spinner.len();
         }
 
-        // Wait before checking again
+        // Wait before checking restarting the loop
         thread::sleep(Duration::from_millis(100));
     }
 
+    // Stop genact (if needed)
+    stop_genact(&mut genact_process);
+
+    // Move to a new line after the animation
+    println!();
+
     // Compilation completion message
-    println!("\rCompilation completed!                     ");
+    println!("Compilation completed!");
     println!();
 
     // Roll for compilation failure
@@ -124,4 +135,26 @@ pub fn compile_proc(
     }
 
     Ok(false)
+}
+
+// Helper to start genact for compilation animation (if it's installed)
+fn start_genact() -> Option<Child> {
+    // Check if genact is installed
+    let genact_path = which("genact").ok()?;
+
+    // Run genact
+    Command::new(genact_path)
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit())
+        .spawn()
+        .ok()
+}
+
+// Helper to stop genact (if there is a genact process running)
+fn stop_genact(genact_process: &mut Option<Child>) {
+    // Kill the running genact process spawned by incrust (if there's one)
+    if let Some(mut child) = genact_process.take() {
+        let _ = child.kill();
+        let _ = child.wait();
+    }
 }

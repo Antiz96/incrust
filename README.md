@@ -18,6 +18,10 @@ Then type 'help' to see the list of available commands and 'guide' to see the ga
 
 ## Installation
 
+## Runtime dependencies
+
+- [`genact`](https://github.com/svenstaro/genact) (optional) - For compilation animations
+
 ### Packages
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/incrust.svg)](https://repology.org/project/incrust/versions)
