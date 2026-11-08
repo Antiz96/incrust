@@ -112,13 +112,13 @@ pub fn guide() {
 pub fn help() {
     println!("Available commands:");
     println!();
-    println!("compile  <== Start compiling to earn credits");
-    println!("upgrade  <== Upgrade the system to speed up compilation or earn more credits");
+    println!("compile  <== Start compiling and earn credits");
+    println!("upgrade  <== Upgrade system resources and unlock perks");
     println!("manage   <== Enable or disable unlocked perks");
-    println!("status   <== Check the current status of your resources and perks");
+    println!("status   <== Check the current status of resources and perks");
     println!("guide    <== Show the game guide");
     println!("help     <== Show this message");
-    println!("exit     <== Save and exit the game");
+    println!("exit     <== Exit the game");
 }
 
 pub fn sudo() {
