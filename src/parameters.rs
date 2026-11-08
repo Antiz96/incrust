@@ -59,12 +59,12 @@ pub fn show_compilation_parameters(game_state: &GameState) -> (f64, f64, f64) {
 
     // Show values
     println!(
-        "Compile time   {:02}:{:02}",
+        "Compile time         {:02}:{:02}",
         (compile_time / 60.0) as u64,
         compile_time as u64 % 60
     );
-    println!("Credit reward  {credit_reward:.2}");
-    println!("Failure        {:.1}%", failure_probability * 100.0);
+    println!("Credit reward        {credit_reward:.2}");
+    println!("Failure probability  {:.1}%", failure_probability * 100.0);
 
     // Return values
     (compile_time, credit_reward, failure_probability)

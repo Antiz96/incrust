@@ -19,7 +19,7 @@ pub fn compile(game_state: &mut GameState, interrupt_rx: &Receiver<()>) -> anyho
     // Start the fake compile process and loop over it
     // Break the loop if it gets interrupted or if the CI/CD perk is not enabled
     loop {
-        let interrupted = compile::compile_proc(game_state, interrupt_rx)?;
+        let interrupted = compile::compile_process(game_state, interrupt_rx)?;
 
         if interrupted || !game_state.ci_cd_enabled {
             break;
@@ -46,15 +46,15 @@ pub fn manage(game_state: &mut GameState, submenu_editor: &mut PromptEditor) -> 
 pub fn status(game_state: &GameState) {
     println!("[RESOURCES]");
     println!();
-    println!("CPU            {} CORE(S)", game_state.cpu);
-    println!("RAM            {} GB", game_state.ram);
-    println!("DISK           {} GB", game_state.disk);
-    println!("CREDITS        {:.2}", game_state.credits);
+    println!("CPU                  {} CORE(S)", game_state.cpu);
+    println!("RAM                  {} GB", game_state.ram);
+    println!("DISK                 {} GB", game_state.disk);
+    println!("CREDITS              {:.2}", game_state.credits);
     println!();
     println!("[PERKS]");
     println!();
     println!(
-        "CI/CD          {}",
+        "CI/CD                {}",
         if !game_state.ci_cd_unlocked {
             "LOCKED"
         } else if game_state.ci_cd_enabled {
@@ -64,7 +64,7 @@ pub fn status(game_state: &GameState) {
         }
     );
     println!(
-        "Auto-Scaling   {}",
+        "Auto-Scaling         {}",
         if !game_state.auto_scaling_unlocked {
             "LOCKED"
         } else if game_state.auto_scaling_enabled {
