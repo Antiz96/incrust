@@ -71,7 +71,7 @@ pub fn upgrade_shop(
             if game_state.ci_cd_unlocked {
                 "Already unlocked"
             } else {
-                "Automatically restarts compilation when an attempt ends."
+                "Automatically restarts a new compilation when the current one ends."
             }
         );
 
@@ -85,7 +85,7 @@ pub fn upgrade_shop(
             if game_state.auto_scaling_unlocked {
                 "Already unlocked"
             } else {
-                "Automatically buy resources as soon as enough credits have been earned."
+                "Automatically buy affordable resource upgrades when starting a compilation."
             }
         );
 
