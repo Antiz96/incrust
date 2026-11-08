@@ -39,6 +39,9 @@ pub fn upgrade_shop(
             game_state.cpu + 1,
             economy::cpu_price(game_state.cpu + 1),
         );
+        println!(
+            "    Reduces the compile time but slightly increases chances of compilation failures."
+        );
 
         // RAM
         println!(
@@ -47,6 +50,9 @@ pub fn upgrade_shop(
             game_state.ram + 1,
             economy::ram_price(game_state.ram + 1),
         );
+        println!(
+            "    Increases the credit reward per compilation but slightly increases the compile time."
+        );
 
         // Disk
         println!(
@@ -54,6 +60,9 @@ pub fn upgrade_shop(
             game_state.disk,
             game_state.disk + 1,
             economy::disk_price(game_state.disk + 1),
+        );
+        println!(
+            "    Reduces chances of compilation failures but slightly reduces the credit reward per compilation."
         );
 
         println!();
