@@ -25,7 +25,7 @@ See the quick video demo below:
 
 ## Installation
 
-## Runtime dependencies
+### Runtime dependencies
 
 - [`genact`](https://github.com/svenstaro/genact) (optional) - For compilation animations
 
