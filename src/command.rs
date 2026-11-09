@@ -86,6 +86,10 @@ pub fn status(game_state: &GameState) {
     );
     println!("Credit reward        {credit_reward:.2}");
     println!("Failure probability  {:.1}%", failure_probability * 100.0);
+    println!();
+    println!("[PRESTIGE]");
+    println!();
+    println!("Level                {}", game_state.prestige);
 }
 
 pub fn guide() {
@@ -111,6 +115,8 @@ pub fn guide() {
         "- Other bonuses can be acquired through different one-time purchase perks, you can see"
     );
     println!("  the list of perks (and their descriptions) from the 'upgrade' command menu");
+    println!("- Given that you meet the requirements in terms of system resources, you can also");
+    println!("  buy prestige levels to reset your progression with extra bonuses!");
     println!();
     println!("Unlocked perks can be enabled or disabled by running the 'manage' command.");
     println!();

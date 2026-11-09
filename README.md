@@ -96,6 +96,8 @@ the 'upgrade' command:
   but also slightly reduces the credit reward per completed (and successful) compilation
 - Other bonuses can be acquired through different one-time purchase perks, you can see
   the list of perks (and their descriptions) from the 'upgrade' command menu
+- Given that you meet the requirements in terms of system resources, you can also
+  buy prestige levels to reset your progression with extra bonuses!
 
 Unlocked perks can be enabled or disabled by running the 'manage' command.
 

@@ -12,6 +12,10 @@ const RAM_PRICE_MULTIPLIER: f64 = 1.040;
 const DISK_BASE_PRICE: f64 = 1.0;
 const DISK_PRICE_MULTIPLIER: f64 = 1.035;
 
+// Base price and price increment for Prestige levels
+const PRESTIGE_BASE_PRICE: f64 = 1000.0;
+const PRESTIGE_PRICE_INCREMENT: f64 = 500.0;
+
 // Perks price
 pub const CI_CD_PRICE: f64 = 5.0;
 pub const AUTO_SCALING_PRICE: f64 = 25.0;
@@ -39,4 +43,9 @@ pub fn ram_price(level: u64) -> f64 {
 // Calculate Disk price
 pub fn disk_price(level: u64) -> f64 {
     upgrade_price(level, DISK_BASE_PRICE, DISK_PRICE_MULTIPLIER)
+}
+
+// Calculate Prestige level price
+pub fn prestige_price(level: u64) -> f64 {
+    PRESTIGE_BASE_PRICE + PRESTIGE_PRICE_INCREMENT * level as f64
 }

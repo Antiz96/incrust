@@ -21,6 +21,8 @@ pub struct GameState {
     pub ci_cd_enabled: bool,
     pub auto_scaling_unlocked: bool,
     pub auto_scaling_enabled: bool,
+    // Prestige
+    pub prestige: u64,
 }
 
 // Default values
@@ -37,6 +39,8 @@ impl Default for GameState {
             ci_cd_enabled: false,
             auto_scaling_unlocked: false,
             auto_scaling_enabled: false,
+            // Prestige
+            prestige: 0,
         }
     }
 }
