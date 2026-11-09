@@ -46,7 +46,7 @@ pub fn manage(game_state: &mut GameState, submenu_editor: &mut PromptEditor) -> 
 pub fn status(game_state: &GameState) {
     println!("[RESOURCES]");
     println!();
-    println!("CPU                  {} CORE(S)", game_state.cpu);
+    println!("CPU                  {} CORES", game_state.cpu);
     println!("RAM                  {} GB", game_state.ram);
     println!("DISK                 {} GB", game_state.disk);
     println!("CREDITS              {:.2}", game_state.credits);
