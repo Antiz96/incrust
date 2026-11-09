@@ -50,8 +50,8 @@ pub fn compile_process(
     // Start compilation timer
     let start = Instant::now();
 
-    // Start genact (if it's installed, directly checked by the start_genact() function)
-    let mut genact_process = start_genact();
+    // Start genact (if it's installed, directly checked by the start_genact function)
+    let mut genact_process = start_genact(game_state);
 
     // Fallback compilation animation if genact is not installed
     let spinner = ["-", "\\", "|", "/"];
@@ -138,12 +138,17 @@ pub fn compile_process(
 }
 
 // Helper to start genact for compilation animation (if it's installed)
-fn start_genact() -> Option<Child> {
+fn start_genact(game_state: &GameState) -> Option<Child> {
     // Check if genact is installed
     let genact_path = which("genact").ok()?;
 
+    // Calculate speed factor according to the number of CPU cores
+    let speed_factor = game_state.cpu.div_ceil(10);
+
     // Run genact
     Command::new(genact_path)
+        .arg("--speed-factor")
+        .arg(speed_factor.to_string())
         .stdout(Stdio::inherit())
         .stderr(Stdio::inherit())
         .spawn()
