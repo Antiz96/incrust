@@ -16,6 +16,10 @@ A minimal incremental / idle terminal game about compiling stuff.
 Run `incrust` to start the game.  
 Then type 'help' to see the list of available commands and 'guide' to see the game guide.
 
+See the quick video demo below:
+
+<https://github.com/user-attachments/assets/edf79f49-9c9f-43ab-a2df-bf13e1d7934f>
+
 ## Installation
 
 ## Runtime dependencies
