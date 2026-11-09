@@ -2,15 +2,15 @@
 
 // Base price and price multiplier for CPU
 const CPU_BASE_PRICE: f64 = 1.0;
-const CPU_PRICE_MULTIPLIER: f64 = 1.020;
+const CPU_PRICE_MULTIPLIER: f64 = 1.030;
 
 // Base price and price multiplier for RAM
 const RAM_BASE_PRICE: f64 = 1.0;
-const RAM_PRICE_MULTIPLIER: f64 = 1.030;
+const RAM_PRICE_MULTIPLIER: f64 = 1.040;
 
 // Base price and price multiplier for Disk
 const DISK_BASE_PRICE: f64 = 1.0;
-const DISK_PRICE_MULTIPLIER: f64 = 1.025;
+const DISK_PRICE_MULTIPLIER: f64 = 1.035;
 
 // Perks price
 pub const CI_CD_PRICE: f64 = 5.0;
