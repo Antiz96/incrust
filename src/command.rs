@@ -98,7 +98,10 @@ pub fn guide() {
     println!(
         "  but also slightly reduces the credit reward per completed (and successful) compilation"
     );
-    println!("- Other bonuses can be acquired through different one-time purchase perks");
+    println!(
+        "- Other bonuses can be acquired through different one-time purchase perks, you can see"
+    );
+    println!("  the list of perks (and their descriptions) from the 'upgrade' command menu");
     println!();
     println!("Unlocked perks can be enabled or disabled by running the 'manage' command.");
     println!();
