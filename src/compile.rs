@@ -10,6 +10,7 @@ use std::thread;
 use std::time::{Duration, Instant};
 use which::which;
 
+use crate::command;
 use crate::parameters;
 use crate::statefile::{self, GameState};
 use crate::upgrade;
@@ -18,6 +19,17 @@ pub fn compile_process(
     game_state: &mut GameState,
     interrupt_rx: &Receiver<()>,
 ) -> anyhow::Result<bool> {
+    // Run auto-scaling if enabled
+    upgrade::auto_scale(game_state)?;
+
+    // Get compilation parameters
+    let (compile_time, credit_reward, failure_probability) =
+        parameters::get_compilation_parameters(game_state);
+
+    // Show status (to see the current numbers of resources and compilation parameters)
+    command::status(game_state);
+    println!();
+
     // Silly messages
     println!(
         "{} Synchronizing imaginary dependencies...",
@@ -34,14 +46,6 @@ pub fn compile_process(
     println!("{} Starting compilation...", "[ OK ]".green());
     thread::sleep(Duration::from_millis(125));
 
-    println!();
-
-    // Run auto-scaling if enabled
-    upgrade::auto_scale(game_state)?;
-
-    // Get and show compilation parameters
-    let (compile_time, credit_reward, failure_probability) =
-        parameters::show_compilation_parameters(game_state);
     println!();
 
     // Convert compile time to a Duration (used later to determine when the compilation is over)

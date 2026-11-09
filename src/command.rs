@@ -74,9 +74,18 @@ pub fn status(game_state: &GameState) {
         }
     );
     println!();
+    // Get compilation parameters
+    let (compile_time, credit_reward, failure_probability) =
+        parameters::get_compilation_parameters(game_state);
     println!("[COMPILATION]");
     println!();
-    parameters::show_compilation_parameters(game_state);
+    println!(
+        "Compile time         {:02}:{:02}",
+        (compile_time / 60.0) as u64,
+        compile_time as u64 % 60
+    );
+    println!("Credit reward        {credit_reward:.2}");
+    println!("Failure probability  {:.1}%", failure_probability * 100.0);
 }
 
 pub fn guide() {

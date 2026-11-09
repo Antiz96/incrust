@@ -49,22 +49,13 @@ pub fn failure_probability(cpu: u64, disk: u64) -> f64 {
     probability.clamp(MIN_COMPILATION_FAILURE_PROB, MAX_COMPILATION_FAILURE_PROB)
 }
 
-// Helper to retrieve and show the different compilation parameters:
+// Helper to retrieve the different compilation parameters:
 // compile time, credit reward and failure percentage
-pub fn show_compilation_parameters(game_state: &GameState) -> (f64, f64, f64) {
+pub fn get_compilation_parameters(game_state: &GameState) -> (f64, f64, f64) {
     // Calculate values
     let compile_time = compile_time(game_state.cpu, game_state.ram);
     let credit_reward = credit_reward(game_state.ram, game_state.disk);
     let failure_probability = failure_probability(game_state.cpu, game_state.disk);
-
-    // Show values
-    println!(
-        "Compile time         {:02}:{:02}",
-        (compile_time / 60.0) as u64,
-        compile_time as u64 % 60
-    );
-    println!("Credit reward        {credit_reward:.2}");
-    println!("Failure probability  {:.1}%", failure_probability * 100.0);
 
     // Return values
     (compile_time, credit_reward, failure_probability)
