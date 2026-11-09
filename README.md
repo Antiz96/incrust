@@ -11,10 +11,11 @@
 
 ## Description
 
-A minimal incremental / idle terminal game about compiling stuff.
+A minimal incremental / idle terminal game about compiling stuff.  
+Start compiling to earn credits, invest them in system upgrades and perks, compile faster, earn more, and repeat!
 
 Run `incrust` to start the game.  
-Then type 'help' to see the list of available commands and 'guide' to see the game guide.
+Then type `help` to see the list of available commands and `guide` to see the game guide.
 
 See the quick video demo below:
 

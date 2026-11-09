@@ -6,9 +6,11 @@ Incrust - A minimal incremental / idle terminal game about compiling stuff
 
 # DESCRIPTION
 
+Start compiling to earn credits, invest them in system upgrades and perks, compile faster, earn more, and repeat!
+
 Run `incrust` to start the game.
 
-Then type 'help' to see the list of available commands and 'guide' to see the game guide.
+Then type `help` to see the list of available commands and `guide` to see the game guide.
 
 # SYNOPSIS
 
