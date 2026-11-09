@@ -73,7 +73,7 @@ There are also shell completions available in the [`res/completions/`](https://g
 ## Usage
 
 Run `incrust` to start the game.  
-Then type 'help' to see the list of available commands and 'guide' to see the game guide (shown below).
+Then type `help` to see the list of available commands and `guide` to see the game guide (displayed below).
 
 ```text
 Start compiling stuff by running the 'compile' command.
@@ -92,7 +92,8 @@ the 'upgrade' command:
   but also slightly increases the compile time
 - Buying Disk space reduces chances of compilation failures
   but also slightly reduces the credit reward per completed (and successful) compilation
-- Other bonuses can be acquired through different one-time purchase perks
+- Other bonuses can be acquired through different one-time purchase perks, you can see
+  the list of perks (and their descriptions) from the 'upgrade' command menu
 
 Unlocked perks can be enabled or disabled by running the 'manage' command.
 
