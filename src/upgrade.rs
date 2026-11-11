@@ -5,6 +5,7 @@ use std::thread;
 use std::time::Duration;
 
 use crate::economy;
+use crate::parameters;
 use crate::prompt::{self, PromptEditor};
 use crate::statefile::{self, GameState};
 
@@ -16,6 +17,8 @@ const DISK_ID: &str = "3";
 // Perks
 const CI_CD_ID: &str = "4";
 const AUTO_SCALING_ID: &str = "5";
+// Prestige
+const PRESTIGE_ID: &str = "6";
 
 // Upgrade shop
 pub fn upgrade_shop(
@@ -34,7 +37,7 @@ pub fn upgrade_shop(
 
         // CPU
         println!(
-            "{CPU_ID} - CPU   {} -> {}   {:.2} credits",
+            "{CPU_ID} - CPU  {} -> {} ==> {:.2} credits",
             game_state.cpu,
             game_state.cpu + 1,
             economy::cpu_price(game_state.cpu + 1),
@@ -45,7 +48,7 @@ pub fn upgrade_shop(
 
         // RAM
         println!(
-            "{RAM_ID} - RAM   {} -> {}   {:.2} credits",
+            "{RAM_ID} - RAM  {} -> {} ==> {:.2} credits",
             game_state.ram,
             game_state.ram + 1,
             economy::ram_price(game_state.ram + 1),
@@ -56,7 +59,7 @@ pub fn upgrade_shop(
 
         // Disk
         println!(
-            "{DISK_ID} - Disk  {} -> {}   {:.2} credits",
+            "{DISK_ID} - Disk {} -> {} ==> {:.2} credits",
             game_state.disk,
             game_state.disk + 1,
             economy::disk_price(game_state.disk + 1),
@@ -72,7 +75,7 @@ pub fn upgrade_shop(
 
         // CI/CD
         println!(
-            "{CI_CD_ID} - CI/CD          {:.2} credits",
+            "{CI_CD_ID} - CI/CD         ==> {:.2} credits",
             economy::CI_CD_PRICE
         );
         println!(
@@ -86,7 +89,7 @@ pub fn upgrade_shop(
 
         // Auto-Scaling
         println!(
-            "{AUTO_SCALING_ID} - Auto-Scalling  {:.2} credits",
+            "{AUTO_SCALING_ID} - Auto-Scalling ==> {:.2} credits",
             economy::AUTO_SCALING_PRICE
         );
         println!(
@@ -100,8 +103,28 @@ pub fn upgrade_shop(
 
         println!();
 
+        // Prestige section
+        println!("Prestige:");
+
+        let prestige_resource_requirement =
+            parameters::prestige_resource_requirement(game_state.prestige);
+        let prestige_price = economy::prestige_price(game_state.prestige);
+
+        println!(
+            "{PRESTIGE_ID} - Prestige Level {} ==> {:.2} credits",
+            game_state.prestige + 1,
+            prestige_price,
+        );
+        println!("    Resets progression but grants permanent bonuses:");
+        println!("    +1 starting CPU, RAM and Disk, and +20% credit reward per Prestige level.");
+        println!(
+            "    Requires at least {prestige_resource_requirement} of each resources (CPU, RAM, Disk)."
+        );
+
+        println!();
+
         // User guide
-        println!("Select the number associated to the resource or perk you want to buy.");
+        println!("Select the number associated to the item you want to buy.");
         println!("Type \"exit\" or press \"Ctrl+C\" to exit the upgrade shop.");
 
         // Show upgrade shop prompt and retrieve user selection
@@ -145,6 +168,9 @@ pub fn upgrade_shop(
                 "Auto-Scaling",
                 economy::AUTO_SCALING_PRICE,
             )?,
+
+            // Prestige
+            PRESTIGE_ID => buy_prestige(game_state)?,
 
             // Others
             "exit" => return Ok(()),
@@ -277,5 +303,50 @@ pub fn auto_scale(game_state: &mut GameState) -> anyhow::Result<()> {
     }
 
     println!();
+    Ok(())
+}
+
+// Helper to buy Prestige
+fn buy_prestige(game_state: &mut GameState) -> anyhow::Result<()> {
+    let prestige_resource_requirement =
+        parameters::prestige_resource_requirement(game_state.prestige);
+    let prestige_price = economy::prestige_price(game_state.prestige);
+
+    // Check credit requirement
+    if game_state.credits < prestige_price {
+        println!("Not enough credits!");
+        return Ok(());
+    }
+
+    // Check resource requirements
+    if game_state.cpu < prestige_resource_requirement
+        || game_state.ram < prestige_resource_requirement
+        || game_state.disk < prestige_resource_requirement
+    {
+        println!("Not enough resources!");
+        return Ok(());
+    }
+
+    // Increase Prestige level
+    game_state.prestige += 1;
+
+    // Reset resource progression, including bonuses for CPU, RAM and Disk
+    let starting_resources = game_state.prestige + 1;
+    game_state.cpu = starting_resources;
+    game_state.ram = starting_resources;
+    game_state.disk = starting_resources;
+    game_state.credits = 0.0;
+
+    // Reset perks progression
+    game_state.ci_cd_unlocked = false;
+    game_state.ci_cd_enabled = false;
+    game_state.auto_scaling_unlocked = false;
+    game_state.auto_scaling_enabled = false;
+
+    // Save game state
+    statefile::save(game_state).context("Failed to save game")?;
+
+    println!("Prestige level {} reached!", game_state.prestige);
+
     Ok(())
 }
