@@ -21,7 +21,7 @@ See the quick video demo below:
 
 *Disclaimer: This video demo should give a general idea of how the game works but note that some parts may have changed over time since it was made.*
 
-<https://github.com/user-attachments/assets/edf79f49-9c9f-43ab-a2df-bf13e1d7934f>
+<https://github.com/user-attachments/assets/4668d062-8818-4e80-bc4f-3d61be56c2dd>
 
 ## Installation
 
