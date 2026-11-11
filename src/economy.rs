@@ -27,7 +27,7 @@ fn round_value(value: f64) -> f64 {
 
 // Calculate resource upgrade price
 pub fn upgrade_price(level: u64, base_price: f64, multiplier: f64) -> f64 {
-    round_value(base_price * multiplier.powf(level.saturating_sub(1) as f64))
+    round_value(base_price * multiplier.powf(level.saturating_sub(2) as f64))
 }
 
 // Calculate CPU price
