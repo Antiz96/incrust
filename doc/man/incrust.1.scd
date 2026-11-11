@@ -1,4 +1,4 @@
-incrust(1) ["Incrust 1.0.0" ["Incrust Manual"]]
+incrust(1) ["Incrust 1.1.0" ["Incrust Manual"]]
 
 # Name
 
