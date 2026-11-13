@@ -135,7 +135,7 @@ pub fn compile_process(
         println!("{} Compilation successful!", "[INFO]".blue());
         thread::sleep(Duration::from_millis(125));
 
-        println!("{} You earned {credit_reward} credits!", "[INFO]".blue());
+        println!("{} You earned {credit_reward:.2} credits!", "[INFO]".blue());
     }
 
     Ok(false)
