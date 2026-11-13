@@ -1,6 +1,6 @@
 [package]
 name = "incrust"
-version = "1.1.0"
+version = "1.1.1"
 authors = ["Robin Candau <robincandau@mailbox.org>"]
 edition = "2024"
 description = "A minimal incremental / idle terminal game about compiling stuff"

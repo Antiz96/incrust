@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.1](https://github.com/Antiz96/incrust/releases/tag/v1.1.1) - 2026-11-13
+
+### Fixes
+
+- Round credits value in the successful compilation message ([#27](https://github.com/Antiz96/incrust/pull/27)) - ([26be5d3](https://github.com/Antiz96/incrust/commit/26be5d3676598d5ab7d24c07491d58f4fe2f64fa)) by @Antiz96
+
 ## [v1.1.0](https://github.com/Antiz96/incrust/releases/tag/v1.1.0) - 2026-11-11
 
 ### Features
