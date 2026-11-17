@@ -4,7 +4,7 @@ use crate::statefile::GameState;
 
 // Base and minimum compile time (in seconds)
 const BASE_COMPILE_TIME: f64 = 300.0;
-const MIN_COMPILE_TIME: f64 = 10.0;
+const MIN_COMPILE_TIME: f64 = 05.0;
 
 // Base and minimum credit reward for a successful compilation
 const BASE_CREDIT_REWARD: f64 = 1.0;
