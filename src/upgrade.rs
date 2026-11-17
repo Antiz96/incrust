@@ -75,7 +75,7 @@ pub fn upgrade_shop(
 
         // CI/CD
         println!(
-            "{CI_CD_ID} - CI/CD         ==> {:.2} credits",
+            "{CI_CD_ID} - CI/CD        ==> {:.2} credits",
             economy::CI_CD_PRICE
         );
         println!(
@@ -89,7 +89,7 @@ pub fn upgrade_shop(
 
         // Auto-Scaling
         println!(
-            "{AUTO_SCALING_ID} - Auto-Scalling ==> {:.2} credits",
+            "{AUTO_SCALING_ID} - Auto-Scaling ==> {:.2} credits",
             economy::AUTO_SCALING_PRICE
         );
         println!(
