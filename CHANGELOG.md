@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.2](https://github.com/Antiz96/incrust/releases/tag/v1.1.2) - 2026-11-17
+
+### Fixes
+
+- *(param)* Reduce minimum compile time ([#32](https://github.com/Antiz96/incrust/pull/32)) - ([4c20986](https://github.com/Antiz96/incrust/commit/4c20986407979fc8fea8c4282705ec87272bcb9a)) by @Antiz96
+- *(upgrade)* Typo ([#31](https://github.com/Antiz96/incrust/pull/31)) - ([6408b30](https://github.com/Antiz96/incrust/commit/6408b3036308b0a77b7c64e6ff930e22276bf6c4)) by @Antiz96
+
+### Miscellaneous
+
+- *(deps)* Update Rust crate clap to 4.6.8 ([#30](https://github.com/Antiz96/incrust/pull/30)) - ([5ff231a](https://github.com/Antiz96/incrust/commit/5ff231a2420285965aa51b0bd40ec2a888beb3d6)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#29](https://github.com/Antiz96/incrust/pull/29)) - ([dd42499](https://github.com/Antiz96/incrust/commit/dd42499ee23be1cbfbeadbbbea44867563a1ea0a)) by @renovate[bot]
+- *(deps)* Update Rust crate rand to 0.10.4 ([#28](https://github.com/Antiz96/incrust/pull/28)) - ([74d5ade](https://github.com/Antiz96/incrust/commit/74d5aded7e86ebf536033bb9659dce27d33ed3e4)) by @renovate[bot]
+
 ## [v1.1.1](https://github.com/Antiz96/incrust/releases/tag/v1.1.1) - 2026-11-13
 
 ### Fixes

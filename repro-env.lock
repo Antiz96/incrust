@@ -1,5 +1,5 @@
 [container]
-image = "docker.io/archlinux/archlinux@sha256:78bf1d7f56915b9ac0ca0175f20c4f1070170909c9c57f37054665641e1cf96b"
+image = "docker.io/archlinux/archlinux@sha256:bad9bb972e3a100f9b3130277c60166146fe0f10ca023868823ebc47a094ced1"
 
 [[package]]
 name = "compiler-rt"
@@ -32,6 +32,14 @@ system = "archlinux"
 url = "https://archive.archlinux.org/packages/l/libedit/libedit-20260512_3.1-1-x86_64.pkg.tar.zst"
 sha256 = "70cb736e4fdee330cd0dfab45875f6ea378ae819958dd15748c300b8d7285b42"
 signature = "iQIzBAABCgAdFiEE4kC1fixGMLp2ji8m/BtUfI2BcsgFAmoI97oACgkQ/BtUfI2BcsikyQ/7B/S1MQ9uI6NeSwoCUxSh8LvJjSc0ixgimM4BsDqxYM0HGTPGXEGMqdjvCFE3duhNfmGphGqSmTGQcxiJjgKKGmzj4xW1b4M3lWoyiv98jx7kR1aRtVthXGWbVFmJKuCuUQd9iWT+h3gh5QHVKib122FAWuWnWgXrXPyfYFMaY7I5nUMr8URDEYVZje5Cjx81AcavUg+6nAQyeH4hDxgsVhvyhqBNzfodN6v/1oV50jaayMs4QvU/CXQL2lnXB1NjMcTJMdYDJ0mXaLHEqYwUj6evQEXlkqlakG32OJ9uQBojYLpATpCheWxqDmjsoRwIay/EGmyYJVvzzqx21bmP5VtAKz63LIQTHqNAZS06hjF65+NYnjFGcwGdWE6FD1DAXWKM/K0KP+tjFg9i7DqwSK578Q6GdLCPty3Jjn7PlaOs9Qt1ysWOOVym3RRAI8isAb+33uCodqhgh5+i52sHhxZDJC9tLju+ESVKWceOschHx9GBz/K6jLa+/xodsEdv/G2J8U1WgIrty2tVWwsy0OaWghLEgx/6yNO09+/D9CYNOukBebOnLiiCQFtkjI6Aj+YiT9LKbf204trvzgWqc0huMrkh80ZcvEt3Rc9MQciuQCyFIy6FF/Pva02PXi0D42S1trgkmnMmLHLP0RGkqKPxdKrofibe5D0Uucyaaus="
+
+[[package]]
+name = "libffi"
+version = "3.8.1-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/l/libffi/libffi-3.8.1-1-x86_64.pkg.tar.zst"
+sha256 = "de2b807b473eea794d465a971e010ffac62fe9e779e95afd5d0dba97210b803d"
+signature = "iHUEABYKAB0WIQRizHP4hOUpV7L92IObeih9mi7GCAUCavidEAAKCRCbeih9mi7GCEucAP0UWaq8dO0ccggOXBDtM5uJgcumF0DVTdKpD7o0Y6GG4AD/SSbM+kkOYAoqeRrSL5uyhlvwwQHMXKkA96NVqa7T4gc="
 
 [[package]]
 name = "libgit2"
@@ -139,17 +147,25 @@ signature = "iQEzBAABCgAdFiEE5JnHn1PJalTlcv7hwGCGM3xQdz4FAmrresQACgkQwGCGM3xQdz5
 
 [[package]]
 name = "rust"
-version = "1:1.99.1-4"
+version = "1:1.100.0-1"
 system = "archlinux"
-url = "https://archive.archlinux.org/packages/r/rust/rust-1:1.99.1-4-x86_64.pkg.tar.zst"
+url = "https://archive.archlinux.org/packages/r/rust/rust-1:1.100.0-1-x86_64.pkg.tar.zst"
 provides = ["cargo"]
-sha256 = "0d871f4bea64c0719b743c435be3dd479b7863b4f1fe6a50896fe18874809349"
-signature = "iHUEABYKAB0WIQSDvIiJNRtd67toQW64rAhgDxCM3wUCavS0mAAKCRC4rAhgDxCM34e8AQDMlDuClE96BMNLYtedCs1H6hYjc7LbjePGDM9IAKHmWgEA53s8luarJvsjSZUAtTbLQWOzAW2J9Gy2mByZRAslKAA="
+sha256 = "c690e3363134b750e61acfaf56edfd98c05fc411c08ae8110b259ec247b79466"
+signature = "iHUEABYKAB0WIQSDvIiJNRtd67toQW64rAhgDxCM3wUCavYcTQAKCRC4rAhgDxCM32WZAP9KgMahPW4t7IV3R7tiafRy1ewmexT2gXPB/y5xNVwnzQD/aJ7i7k7o7xvazSAE9dmE10wHpS7nysH+VrW5+OT55w0="
 
 [[package]]
 name = "rust-musl"
-version = "1:1.99.1-4"
+version = "1:1.100.0-1"
 system = "archlinux"
-url = "https://archive.archlinux.org/packages/r/rust-musl/rust-musl-1:1.99.1-4-x86_64.pkg.tar.zst"
-sha256 = "c259e9c57ed5f68e48904e937c3f148ad5ee056040cc7eb8cd6faf92f909ab21"
-signature = "iHUEABYKAB0WIQSDvIiJNRtd67toQW64rAhgDxCM3wUCavS0mAAKCRC4rAhgDxCM3+/kAQDucBmek73T/9OQ5z7wHka4HJnYJoFuGojOPkLPZGKaSgEAiIX8WKJKaPmUHWTmLiU+D6DUUQg5J5goATcNkns8YAU="
+url = "https://archive.archlinux.org/packages/r/rust-musl/rust-musl-1:1.100.0-1-x86_64.pkg.tar.zst"
+sha256 = "42cd5365fab7b72fe9c7bbe63ee77bee084ab7df8fc4b2b081850cce43acc6e9"
+signature = "iHUEABYKAB0WIQSDvIiJNRtd67toQW64rAhgDxCM3wUCavYcTQAKCRC4rAhgDxCM3y2TAP9CpZj7eLHyh/DC6y5usRTIKCQpxm8uoG5NqonrnLXUIAD7BKaJYNG4b+kelBgo5DqkuxN9rZrbHrmEcw3De9LYxQQ="
+
+[[package]]
+name = "tpm2-tss"
+version = "4.2.2s-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/t/tpm2-tss/tpm2-tss-4.2.2s-1-x86_64.pkg.tar.zst"
+sha256 = "71cb0492274b1b13c9a2270eb474ee2a6a99d5e0c886916814e1c4977cb475bb"
+signature = "iHUEABYKAB0WIQRizHP4hOUpV7L92IObeih9mi7GCAUCavg3DgAKCRCbeih9mi7GCPOsAQDFwgOloz6m0cAor6yGcEE5aoeCLHLUm3yg9ZdlgunG4AEA8vH7FsfT3Tcfjgty+EGyRjP4ye4mD7l7ghY145EYlgc="
